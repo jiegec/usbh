@@ -46,6 +46,7 @@ module usbh_top(
     output [1:0] cfg_rresp,
 
     inout [7:0] utmi_data,
+    output utmi_reset,
 
     input utmi_txready,
     input utmi_rxvalid,
@@ -83,6 +84,7 @@ module usbh_top(
     assign utmi_chrgvbus = 0;
     assign utmi_dischrgvbus = 0;
     assign utmi_suspend_n = 1;
+    assign utmi_reset = !aresetn;
 
     usbh_host usb_host_inst(
         .clk_i(aclk),
