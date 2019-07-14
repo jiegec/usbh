@@ -728,9 +728,9 @@ reg         intr_err_q;
 //-----------------------------------------------------------------
 localparam [15:0] SOF_ZERO        = 0;
 localparam [15:0] SOF_INC         = 1;
-localparam [15:0] SOF_THRESHOLD   = 48000-1;
+localparam [15:0] SOF_THRESHOLD   = 60000-1;
 
-localparam [15:0] CLKS_PER_BIT    = 4;
+localparam [15:0] CLKS_PER_BIT    = 5;
 
 localparam [15:0] EOF1_THRESHOLD  = (50 * CLKS_PER_BIT); // EOF1 + some margin
 localparam [15:0] MAX_XFER_SIZE   = 64;
