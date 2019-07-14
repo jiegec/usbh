@@ -86,7 +86,7 @@ module usbh_top(
 
     usbh_host usb_host_inst(
         .clk_i(aclk),
-        .rst_i(~aresetn),
+        .rst_i(!aresetn),
 
         .cfg_awvalid_i(cfg_awvalid),
         .cfg_awaddr_i(cfg_awaddr),
