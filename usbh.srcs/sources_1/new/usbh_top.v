@@ -44,21 +44,44 @@ module usbh_top(
     output [31:0] cfg_rdata,
     output [1:0] cfg_rresp,
 
-    input [7:0] utmi_data_in,
+    inout [7:0] utmi_data,
+
     input utmi_txready,
     input utmi_rxvalid,
     input utmi_rxactive,
     input utmi_rxerror,
     input [1:0] utmi_linestate,
     
-    output [7:0] utmi_data_out,
     output utmi_txvalid,
-    output [1:0] utmi_op_mode,
-    output [1:0] utmi_xcvrselect,
-    output utmi_termselect,
+    output [1:0] utmi_opmode,
+    output [1:0] utmi_xcvrsel,
+    output utmi_termsel,
     output utmi_dppulldown,
-    output utmi_dmpulldown
+    output utmi_dmpulldown,
+
+    // 0
+    output utmi_idpullup,
+    output utmi_chrgvbus,
+    output utmi_dischrgvbus,
+    output utmi_suspend_n,
+
+    // ignore
+    input utmi_hostdisc,
+    input utmi_iddig,
+    input utmi_vbusvalid,
+    input utmi_sessend
     );
+
+    wire [7:0] utmi_data_in;
+    wire [7:0] utmi_data_out;
+
+    assign utmi_data_in = utmi_data;
+    assign utmi_data = (utmi_txvalid && utmi_txready) ? utmi_data_out : 8'hzz;
+
+    assign utmi_idpullup = 0;
+    assign utmi_chrgvbus = 0;
+    assign utmi_dischrgvbus = 0;
+    assign utmi_suspend_n = 1;
 
     usbh_host usb_host_inst(
         .clk_i(aclk),
@@ -94,9 +117,9 @@ module usbh_top(
 
         .utmi_data_out_o(utmi_data_out),
         .utmi_txvalid_o(utmi_txvalid),
-        .utmi_op_mode_o(utmi_op_mode),
-        .utmi_xcvrselect_o(utmi_xcvrselect),
-        .utmi_termselect_o(utmi_termselect),
+        .utmi_op_mode_o(utmi_opmode),
+        .utmi_xcvrselect_o(utmi_xcvrsel),
+        .utmi_termselect_o(utmi_termsel),
         .utmi_dppulldown_o(utmi_dppulldown),
         .utmi_dmpulldown_o(utmi_dmpulldown)
     );
