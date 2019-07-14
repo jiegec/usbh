@@ -27,13 +27,13 @@ module usbh_top(
     output intr,
 
     input cfg_awvalid,
-    input [7:0] cfg_awaddr,
+    input [31:0] cfg_awaddr,
     input cfg_wvalid,
     input [31:0] cfg_wdata,
     input [3:0] cfg_wstrb,
     input cfg_bready,
     input cfg_arvalid,
-    input [7:0] cfg_araddr,
+    input [31:0] cfg_araddr,
     input cfg_rready,
 
     output cfg_awready,
@@ -86,7 +86,7 @@ module usbh_top(
 
     usbh_host usb_host_inst(
         .clk_i(aclk),
-        .rst_i(aresetn),
+        .rst_i(~aresetn),
 
         .cfg_awvalid_i(cfg_awvalid),
         .cfg_awaddr_i(cfg_awaddr),
