@@ -21,18 +21,19 @@
 
 
 module usbh_top(
+    // UTMI clock = AXI clock
     input aclk,
     input aresetn,
     output intr,
 
     input cfg_awvalid,
-    input [31:0] cfg_awaddr,
+    input [7:0] cfg_awaddr,
     input cfg_wvalid,
     input [31:0] cfg_wdata,
     input [3:0] cfg_wstrb,
     input cfg_bready,
     input cfg_arvalid,
-    input [31:0] cfg_araddr,
+    input [7:0] cfg_araddr,
     input cfg_rready,
 
     output cfg_awready,
