@@ -45,7 +45,9 @@ module usbh_top(
     output [31:0] cfg_rdata,
     output [1:0] cfg_rresp,
 
-    inout [7:0] utmi_data,
+    //inout [7:0] utmi_data,
+    input [7:0] utmi_data_in,
+    output [7:0] utmi_data_out,
     output utmi_reset,
 
     input utmi_txready,
@@ -74,11 +76,11 @@ module usbh_top(
     input utmi_sessend
     );
 
-    wire [7:0] utmi_data_in;
-    wire [7:0] utmi_data_out;
+    //wire [7:0] utmi_data_in;
+    //wire [7:0] utmi_data_out;
 
-    assign utmi_data_in = utmi_data;
-    assign utmi_data = (utmi_txvalid && utmi_txready) ? utmi_data_out : 8'hzz;
+    //assign utmi_data_in = utmi_data;
+    //assign utmi_data = utmi_txvalid ? utmi_data_out : 8'bzzzzzzzz;
 
     assign utmi_idpullup = 0;
     assign utmi_chrgvbus = 0;
