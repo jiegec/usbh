@@ -256,7 +256,7 @@
             <spirit:name>TRI_T</spirit:name>
           </spirit:logicalPort>
           <spirit:physicalPort>
-            <spirit:name>utmi_txvalid</spirit:name>
+            <spirit:name>utmi_data_t</spirit:name>
           </spirit:physicalPort>
         </spirit:portMap>
         <spirit:portMap>
@@ -296,7 +296,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>9666221f</spirit:value>
+            <spirit:value>f5b5dc56</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -312,7 +312,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>9666221f</spirit:value>
+            <spirit:value>f5b5dc56</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -685,6 +685,19 @@
         </spirit:wire>
       </spirit:port>
       <spirit:port>
+        <spirit:name>utmi_data_t</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+              <spirit:viewNameRef>xilinx_anylanguagebehavioralsimulation</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
         <spirit:name>utmi_reset</spirit:name>
         <spirit:wire>
           <spirit:direction>out</spirit:direction>
@@ -1003,7 +1016,7 @@
       <spirit:file>
         <spirit:name>../../new/usbh_top.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_86b1a3bc</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_55d1fa50</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
@@ -1085,8 +1098,8 @@
       </xilinx:taxonomies>
       <xilinx:displayName>usbh_host_v1_0</xilinx:displayName>
       <xilinx:definitionSource>package_project</xilinx:definitionSource>
-      <xilinx:coreRevision>17</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2019-07-21T11:02:24Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>26</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2019-07-22T04:47:17Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@473ddd4d_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@cc7d458_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
@@ -1413,14 +1426,95 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@341db96_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@5e5a9a0f_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@7b1d524e_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69b9cbb6_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@25644709_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@13d19dde_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3fba188c_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@170cb9d4_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@149685f5_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2d42c6e0_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69d437b2_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3b3c39d9_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7d8e961c_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@693c42b1_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@135b1553_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@23d34fa8_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2950d91f_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4e8febe4_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4488f476_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2f3c9919_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@44e00034_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@64006699_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7fad16cd_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e7f4837_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5e28c9a9_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@ca71469_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@425a1035_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71b2bd3a_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@412783ff_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7104862f_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@41fa6637_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@25de7ace_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1cf99618_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@709ce7f6_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@31956c9_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6cc88297_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@61db8f7f_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@64c5a7b5_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@777bfa0a_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@9dd41c0_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@69944371_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@21946bfc_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@52dee2ab_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5efc722e_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@676a7886_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4858c521_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4753b23f_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1c0d6bc_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2724943c_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@12d51564_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1f1bfa53_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@307e0dda_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4508f3de_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6194eaae_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3eaed7ca_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@49101dd0_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@27773b75_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@30f62a36_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@787ca6db_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5b185cee_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4f78b6b2_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@686e2302_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2bf80cf3_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@b29dce3_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@323eeab1_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2dac4bfa_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1a7b2d_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7f293df6_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1b89a316_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@15d6dc01_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3f1416a9_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@156e2f04_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@d4c4d2e_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e638599_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@fe3290f_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a8acbb5_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@657dec23_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@6a3e0ce8_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@1cc644d1_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@48b1da3b_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5f2e0709_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@588eb8ea_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2e31ab71_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@5fe130a6_ARCHIVE_LOCATION">/home/oslab/usbh/usbh.srcs/sources_1/imports/src_v</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2018.3</xilinx:xilinxVersion>
-      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="b3a7bccd"/>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="49ae3205"/>
       <xilinx:checksum xilinx:scope="memoryMaps" xilinx:value="e56def45"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="51cdb896"/>
-      <xilinx:checksum xilinx:scope="ports" xilinx:value="e1f649ea"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="9a929667"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="d3ce144f"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="7960c63b"/>
     </xilinx:packagingInfo>
   </spirit:vendorExtensions>

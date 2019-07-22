@@ -112,7 +112,7 @@ reg [3:0]           state_q;
 // Definitions
 //-----------------------------------------------------------------
 localparam RX_TIMEOUT       = 8'd255; // ~5uS @ 48MHz
-localparam TX_IFS           = 8'd7; // 2 FS bit times (x5 CLKs @ 60MHz, x4 CLKs @ 48MHz)
+localparam TX_IFS           = 8'd200; // 2 FS bit times (x5 CLKs @ 60MHz, x4 CLKs @ 48MHz)
 
 localparam PID_OUT          = 8'hE1;
 localparam PID_IN           = 8'h69;
@@ -143,7 +143,7 @@ localparam STATE_TX_IFS     = 4'd12;
 
 localparam RX_TIME_ZERO     = 3'd0;
 localparam RX_TIME_INC      = 3'd1;
-localparam RX_TIME_READY    = 3'd7; // 2-bit times (x5 CLKs @ 60MHz, x4 CLKs @ 48MHz)
+localparam RX_TIME_READY    = 3'd9; // 2-bit times (x5 CLKs @ 60MHz, x4 CLKs @ 48MHz)
 
 //-----------------------------------------------------------------
 // Wires
@@ -723,12 +723,12 @@ begin
     if (state_q == STATE_TX_CRC1)
     begin
         utmi_txvalid_r = 1'b1;
-        utmi_data_r    = crc_sum_q[7:0] ^ 8'hFF;
+        utmi_data_r    = {~crc_sum_q[8], ~crc_sum_q[9], ~crc_sum_q[10], ~crc_sum_q[11], ~crc_sum_q[12], ~crc_sum_q[13], ~crc_sum_q[14], ~crc_sum_q[15]};
     end
     else if (state_q == STATE_TX_CRC2)
     begin
         utmi_txvalid_r = 1'b1;
-        utmi_data_r    = crc_sum_q[15:8] ^ 8'hFF;
+        utmi_data_r    = {~crc_sum_q[0], ~crc_sum_q[1], ~crc_sum_q[2], ~crc_sum_q[3], ~crc_sum_q[4], ~crc_sum_q[5], ~crc_sum_q[6], ~crc_sum_q[7]};
     end
     else if (state_q == STATE_TX_TOKEN1)
     begin

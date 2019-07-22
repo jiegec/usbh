@@ -48,6 +48,7 @@ module usbh_top(
     //inout [7:0] utmi_data,
     input [7:0] utmi_data_in,
     output [7:0] utmi_data_out,
+    output utmi_data_t,
     output utmi_reset,
 
     input utmi_txready,
@@ -87,6 +88,7 @@ module usbh_top(
     assign utmi_dischrgvbus = 0;
     assign utmi_suspend_n = 1;
     assign utmi_reset = !aresetn;
+    assign utmi_data_t = !utmi_txvalid;
 
     usbh_host usb_host_inst(
         .clk_i(aclk),
