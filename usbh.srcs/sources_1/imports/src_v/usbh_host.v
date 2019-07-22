@@ -789,7 +789,8 @@ u_sie
     .utmi_txready_i(utmi_txready_i),
     .utmi_data_i(utmi_data_in_i),
     .utmi_rxvalid_i(utmi_rxvalid_i),
-    .utmi_rxactive_i(utmi_rxactive_i)
+    .utmi_rxactive_i(utmi_rxactive_i),
+    .utmi_linestate_i(utmi_linestate_i)
 );    
 
 //-----------------------------------------------------------------

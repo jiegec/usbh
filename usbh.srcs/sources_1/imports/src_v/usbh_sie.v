@@ -51,6 +51,7 @@ module usbh_sie
     ,input  [  7:0]  utmi_data_i
     ,input           utmi_rxvalid_i
     ,input           utmi_rxactive_i
+    ,input  [  1:0]  utmi_linestate_i
 
     // Outputs
     ,output          ack_o
@@ -87,7 +88,7 @@ reg                 in_transfer_q;
 
 reg [2:0]           rx_time_q;
 reg                 rx_time_en_q;
-reg [7:0]           last_tx_time_q;
+reg [9:0]           last_tx_time_q;
 
 reg                 send_data1_q;
 reg                 send_sof_q;
@@ -111,8 +112,8 @@ reg [3:0]           state_q;
 //-----------------------------------------------------------------
 // Definitions
 //-----------------------------------------------------------------
-localparam RX_TIMEOUT       = 8'd255; // ~5uS @ 48MHz
-localparam TX_IFS           = 8'd200; // 2 FS bit times (x5 CLKs @ 60MHz, x4 CLKs @ 48MHz)
+localparam RX_TIMEOUT       = 10'd300; // ~5uS @ 60MHz
+localparam TX_IFS           = 10'd19; // 2+2 FS bit times (x5 CLKs @ 60MHz, x4 CLKs @ 48MHz)
 
 localparam PID_OUT          = 8'hE1;
 localparam PID_IN           = 8'h69;
@@ -140,6 +141,7 @@ localparam STATE_TX_ACKNAK  = 4'd9;
 localparam STATE_TX_WAIT    = 4'd10;
 localparam STATE_RX_WAIT    = 4'd11;
 localparam STATE_TX_IFS     = 4'd12;
+localparam STATE_TX_WAIT_EOP= 4'd13;
 
 localparam RX_TIME_ZERO     = 3'd0;
 localparam RX_TIME_INC      = 3'd1;
@@ -166,7 +168,7 @@ wire tx_ifs_ready_w    = (last_tx_time_q >= TX_IFS);
 // CRC16 error on received data
 wire crc_error_w = (state_q == STATE_RX_DATA) && !rx_active_w && in_transfer_q        &&
                    (status_response_q == PID_DATA0 || status_response_q == PID_DATA1) &&
-                   (crc_sum_q != 16'hB001);
+                   (crc_sum_q != 16'h800D);
 
 //-----------------------------------------------------------------
 // State Machine
@@ -210,13 +212,24 @@ begin
             begin
                 // SOF - no data packet
                 if (send_sof_q)
-                    next_state_r = STATE_TX_IFS;
+                    next_state_r = STATE_TX_WAIT_EOP;
                 // IN - wait for data
                 else if (in_transfer_q)
                     next_state_r = STATE_RX_WAIT;
                 // OUT/SETUP - Send data or ZLP
                 else
-                    next_state_r = STATE_TX_IFS;
+                    next_state_r = STATE_TX_WAIT_EOP;
+            end
+        end
+        //-----------------------------------------
+        // TX_WAIT_EOP
+        //-----------------------------------------
+        STATE_TX_WAIT_EOP :
+        begin
+            // EOP sent
+            if (utmi_linestate_i == 2'b0)
+            begin
+                next_state_r = STATE_TX_IFS;
             end
         end
         //-----------------------------------------
@@ -366,13 +379,13 @@ else if (state_q == STATE_TX_TOKEN1 && utmi_txready_i)
 //-----------------------------------------------------------------
 always @ (posedge clk_i or posedge rst_i)
 if (rst_i)
-    last_tx_time_q <= 8'd0;
+    last_tx_time_q <= 10'd0;
 // Start counting from last Tx
-else if (state_q == STATE_IDLE || (utmi_txvalid_o && utmi_txready_i))
-    last_tx_time_q <= 8'd0;
+else if (state_q == STATE_IDLE || state_q == STATE_TX_WAIT_EOP || (utmi_txvalid_o && utmi_txready_i))
+    last_tx_time_q <= 10'd0;
 // Increment the Tx timeout
 else if (last_tx_time_q != RX_TIMEOUT)
-    last_tx_time_q <= last_tx_time_q + 8'd1;
+    last_tx_time_q <= last_tx_time_q + 10'd1;
 
 //-----------------------------------------------------------------
 // Transmit / Receive counter
