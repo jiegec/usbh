@@ -142,6 +142,7 @@ localparam STATE_TX_WAIT    = 4'd10;
 localparam STATE_RX_WAIT    = 4'd11;
 localparam STATE_TX_IFS     = 4'd12;
 localparam STATE_TX_WAIT_EOP= 4'd13;
+localparam STATE_RX_WAIT_EOP= 4'd14;
 
 localparam RX_TIME_ZERO     = 3'd0;
 localparam RX_TIME_INC      = 3'd1;
@@ -215,7 +216,7 @@ begin
                     next_state_r = STATE_TX_WAIT_EOP;
                 // IN - wait for data
                 else if (in_transfer_q)
-                    next_state_r = STATE_RX_WAIT;
+                    next_state_r = STATE_RX_WAIT_EOP;
                 // OUT/SETUP - Send data or ZLP
                 else
                     next_state_r = STATE_TX_WAIT_EOP;
@@ -287,7 +288,7 @@ begin
             begin
                // If a response is expected
                if (wait_resp_q)
-                  next_state_r = STATE_RX_WAIT;
+                  next_state_r = STATE_RX_WAIT_EOP;
                 // No response expected (e.g ISO transfer)
                else
                   next_state_r = STATE_IDLE;                
@@ -310,6 +311,15 @@ begin
             // Data sent?
             if (utmi_txready_i)
                 next_state_r = STATE_IDLE;
+        end
+        //-----------------------------------------
+        // STATE_RX_WAIT_EOP
+        //-----------------------------------------
+        STATE_RX_WAIT_EOP :
+        begin
+           // EOP sent?
+           if (utmi_linestate_i == 2'b0)
+              next_state_r = STATE_RX_WAIT;
         end
         //-----------------------------------------
         // STATE_RX_WAIT
@@ -381,7 +391,7 @@ always @ (posedge clk_i or posedge rst_i)
 if (rst_i)
     last_tx_time_q <= 10'd0;
 // Start counting from last Tx
-else if (state_q == STATE_IDLE || state_q == STATE_TX_WAIT_EOP || (utmi_txvalid_o && utmi_txready_i))
+else if (state_q == STATE_IDLE || state_q == STATE_TX_WAIT_EOP || state_q == STATE_RX_WAIT_EOP || (utmi_txvalid_o && utmi_txready_i))
     last_tx_time_q <= 10'd0;
 // Increment the Tx timeout
 else if (last_tx_time_q != RX_TIMEOUT)
