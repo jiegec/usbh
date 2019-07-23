@@ -54,73 +54,24 @@ parameter WIDTH   = 8;
 parameter DEPTH   = 64;
 parameter ADDR_W  = 6;
 
-//-----------------------------------------------------------------
-// Local Params
-//-----------------------------------------------------------------
-localparam COUNT_W = ADDR_W + 1;
-
-//-----------------------------------------------------------------
-// Registers
-//-----------------------------------------------------------------
-reg [WIDTH-1:0]         ram [DEPTH-1:0];
-reg [ADDR_W-1:0]        rd_ptr;
-reg [ADDR_W-1:0]        wr_ptr;
-reg [COUNT_W-1:0]       count;
-
-//-----------------------------------------------------------------
-// Sequential
-//-----------------------------------------------------------------
-always @ (posedge clk_i or posedge rst_i)
-if (rst_i)
-begin
-    count   <= {(COUNT_W) {1'b0}};
-    rd_ptr  <= {(ADDR_W) {1'b0}};
-    wr_ptr  <= {(ADDR_W) {1'b0}};
-end
-else
-begin
-
-    if (flush_i)
-    begin
-        count   <= {(COUNT_W) {1'b0}};
-        rd_ptr  <= {(ADDR_W) {1'b0}};
-        wr_ptr  <= {(ADDR_W) {1'b0}};
-    end
-
-    // Push
-    if (push_i & ~full_o)
-    begin
-        ram[wr_ptr] <= data_i;
-        wr_ptr      <= wr_ptr + 1;
-    end
-
-    // Pop
-    if (pop_i & ~empty_o)
-    begin
-        rd_ptr      <= rd_ptr + 1;
-    end
-
-    // Count up
-    if ((push_i & ~full_o) & ~(pop_i & ~empty_o))
-    begin
-        count <= count + 1;
-    end
-    // Count down
-    else if (~(push_i & ~full_o) & (pop_i & ~empty_o))
-    begin
-        count <= count - 1;
-    end
-end
-
-//-------------------------------------------------------------------
-// Combinatorial
-//-------------------------------------------------------------------
-/* verilator lint_off WIDTH */
-assign full_o    = (count == DEPTH);
-assign empty_o   = (count == 0);
-/* verilator lint_on WIDTH */
-
-assign data_o    = ram[rd_ptr];
+xpm_fifo_sync #(
+	.FIFO_WRITE_DEPTH(DEPTH),
+	.WRITE_DATA_WIDTH(WIDTH),
+	.WR_DATA_COUNT_WIDTH(ADDR_W),
+	.READ_DATA_WIDTH(WIDTH),
+	.RD_DATA_COUNT_WIDTH(ADDR_W),
+	.READ_MODE("fwft"),
+	.FIFO_READ_LATENCY(0)
+) xpm_fifo_sync_inst (
+	.wr_clk(clk_i),
+	.wr_en(push_i),
+	.din(data_i),
+	.full(full_o),
+	.rst(rst_i),
+	.rd_en(pop_i),
+	.dout(data_o),
+	.empty(empty_o)
+);
 
 
 endmodule
