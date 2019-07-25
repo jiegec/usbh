@@ -77,17 +77,10 @@ module usbh_top(
     input utmi_sessend
     );
 
-    //wire [7:0] utmi_data_in;
-    //wire [7:0] utmi_data_out;
-
-    //assign utmi_data_in = utmi_data;
-    //assign utmi_data = utmi_txvalid ? utmi_data_out : 8'bzzzzzzzz;
-
     assign utmi_idpullup = 0;
     assign utmi_chrgvbus = 0;
     assign utmi_dischrgvbus = 0;
     assign utmi_suspend_n = 1;
-    assign utmi_reset = !aresetn;
     assign utmi_data_t = !utmi_txvalid;
 
     usbh_host usb_host_inst(
@@ -128,7 +121,8 @@ module usbh_top(
         .utmi_xcvrselect_o(utmi_xcvrsel),
         .utmi_termselect_o(utmi_termsel),
         .utmi_dppulldown_o(utmi_dppulldown),
-        .utmi_dmpulldown_o(utmi_dmpulldown)
+        .utmi_dmpulldown_o(utmi_dmpulldown),
+	.utmi_reset_o(utmi_reset)
     );
 
 endmodule

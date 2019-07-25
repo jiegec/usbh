@@ -67,13 +67,6 @@
     `define USB_CTRL_PHY_OPMODE_W          2
     `define USB_CTRL_PHY_OPMODE_R          2:1
 
-    `define USB_CTRL_TX_FLUSH      1
-    `define USB_CTRL_TX_FLUSH_DEFAULT    0
-    `define USB_CTRL_TX_FLUSH_B          1
-    `define USB_CTRL_TX_FLUSH_T          1
-    `define USB_CTRL_TX_FLUSH_W          1
-    `define USB_CTRL_TX_FLUSH_R          1:1
-
     `define USB_CTRL_ENABLE_SOF      0
     `define USB_CTRL_ENABLE_SOF_DEFAULT    0
     `define USB_CTRL_ENABLE_SOF_B          0
@@ -306,3 +299,18 @@
     `define USB_RD_DATA_DATA_W          8
     `define USB_RD_DATA_DATA_R          7:0
 
+`define USB_CTRL2    8'h24
+
+    `define USB_CTRL2_TX_FLUSH      1
+    `define USB_CTRL2_TX_FLUSH_DEFAULT    0
+    `define USB_CTRL2_TX_FLUSH_B          1
+    `define USB_CTRL2_TX_FLUSH_T          1
+    `define USB_CTRL2_TX_FLUSH_W          1
+    `define USB_CTRL2_TX_FLUSH_R          1:1
+
+    `define USB_CTRL2_PHY_RESET      1
+    `define USB_CTRL2_PHY_RESET_DEFAULT    0
+    `define USB_CTRL2_PHY_RESET_B          0
+    `define USB_CTRL2_PHY_RESET_T          0
+    `define USB_CTRL2_PHY_RESET_W          1
+    `define USB_CTRL2_PHY_RESET_R          0:0

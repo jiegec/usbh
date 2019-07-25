@@ -75,6 +75,7 @@ module usbh_host
     ,output         utmi_termselect_o
     ,output         utmi_dppulldown_o
     ,output         utmi_dmpulldown_o
+    ,output         utmi_reset_o
 );
 
 //-----------------------------------------------------------------
@@ -196,11 +197,11 @@ reg        usb_ctrl_tx_flush_q;
 
 always @ (posedge clk_i or posedge rst_i)
 if (rst_i)
-    usb_ctrl_tx_flush_q <= 1'd`USB_CTRL_TX_FLUSH_DEFAULT;
-else if (write_en_w && (wr_addr_q[7:0] == `USB_CTRL))
-    usb_ctrl_tx_flush_q <= wr_data_q[`USB_CTRL_TX_FLUSH_R];
+    usb_ctrl_tx_flush_q <= 1'd`USB_CTRL2_TX_FLUSH_DEFAULT;
+else if (write_en_w && (wr_addr_q[7:0] == `USB_CTRL2))
+    usb_ctrl_tx_flush_q <= wr_data_q[`USB_CTRL2_TX_FLUSH_R];
 else
-    usb_ctrl_tx_flush_q <= 1'd`USB_CTRL_TX_FLUSH_DEFAULT;
+    usb_ctrl_tx_flush_q <= 1'd`USB_CTRL2_TX_FLUSH_DEFAULT;
 
 wire        usb_ctrl_tx_flush_out_w = usb_ctrl_tx_flush_q;
 
@@ -215,6 +216,17 @@ else if (write_en_w && (wr_addr_q[7:0] == `USB_CTRL))
     usb_ctrl_enable_sof_q <= wr_data_q[`USB_CTRL_ENABLE_SOF_R];
 
 wire        usb_ctrl_enable_sof_out_w = usb_ctrl_enable_sof_q;
+
+// usb_ctrl2_phy_reset [internal]
+reg        usb_ctrl2_phy_reset_q;
+
+always @ (posedge clk_i or posedge rst_i)
+if (rst_i)
+    usb_ctrl2_phy_reset_q <= 1'd`USB_CTRL2_PHY_RESET_DEFAULT;
+else if (write_en_w && (wr_addr_q[7:0] == `USB_CTRL2))
+    usb_ctrl2_phy_reset_q <= wr_data_q[`USB_CTRL2_PHY_RESET_R];
+
+wire utmi_reset_o = usb_ctrl2_phy_reset_q;
 
 
 //-----------------------------------------------------------------
